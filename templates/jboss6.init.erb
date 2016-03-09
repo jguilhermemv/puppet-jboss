@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/sh
+#/usr/bin/env bash
 # File Managed by Puppet
 <% if @operatingsystem == 'RedHat' or @operatingsystem == 'CentOS' or @operatingsystem == 'Scientific' %>
 # jboss        Startup script for JBoss
@@ -9,8 +10,8 @@
 <% end %>
 ### BEGIN INIT INFO
 # Provides:          jboss
-# Required-Start:    $local_fs $remote_fs $network 
-# Required-Stop:     $local_fs $remote_fs $network 
+# Required-Start:    $local_fs $remote_fs $network
+# Required-Stop:     $local_fs $remote_fs $network
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: Start/stop jboss service
@@ -23,7 +24,7 @@ JBOSS_HOME=${JBOSS_HOME:-"<%= scope.lookupvar('jboss::real_jboss_dir') %>"}
 JBOSS_USER=${JBOSS_USER:-"<%= scope.lookupvar('jboss::process_user') %>"}
 
 # make sure java is in your path
-JAVAPTH=${JAVAPTH:-"/usr/local/jdk/bin"}
+JAVAPTH=${JAVAPTH:-"<%= scope.lookupvar('jboss::javapth') %>"}
 
 # configuration to use, usually one of 'minimal', 'default', 'all'
 JBOSS_CONF=${JBOSS_CONF:-"<%= scope.lookupvar('jboss::real_mode') %>"}
@@ -52,7 +53,7 @@ if [ -n "$JBOSS_CONSOLE" -a ! -d "$JBOSS_CONSOLE" ]; then
   touch $JBOSS_CONSOLE
   if [ ! -z "$SUBIT" ]; then
     chown $JBOSS_USER $JBOSS_CONSOLE
-  fi 
+  fi
 fi
 
 if [ -n "$JBOSS_CONSOLE" -a ! -f "$JBOSS_CONSOLE" ]; then
@@ -144,4 +145,3 @@ status)
 *)
     echo "usage: $0 (start|stop|restart|status|help)"
 esac
-

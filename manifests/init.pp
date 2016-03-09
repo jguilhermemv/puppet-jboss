@@ -260,7 +260,10 @@
 #   The protocol used by the the service.
 #   This is used by monitor, firewall and puppi (optional) components
 #   Can be defined also by the (top scope) variable $jboss_protocol
-#
+
+# [*javapth*]
+#   The path were the Java executable is located. Usually the bin folder of
+#   the Java installation directory. (JAVA_HOME/bin)
 #
 # == Examples
 #
@@ -273,7 +276,8 @@
 #
 # == Author
 #   Alessandro Franceschi <al@lab42.it/>
-#
+# == Forked by Jose Guilherme <jguilhermemv@gmail.com>
+
 class jboss (
   $version             = params_lookup( 'version' ),
   $install             = params_lookup( 'install' ),
@@ -328,7 +332,8 @@ class jboss (
   $log_dir             = params_lookup( 'log_dir' ),
   $log_file            = params_lookup( 'log_file' ),
   $port                = params_lookup( 'port' ),
-  $protocol            = params_lookup( 'protocol' )
+  $protocol            = params_lookup( 'protocol' ),
+  $javapth             = params_lookup( 'javapth'  )
   ) inherits jboss::params {
 
   $bool_manage_user=any2bool($manage_user)

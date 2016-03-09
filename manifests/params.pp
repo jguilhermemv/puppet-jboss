@@ -29,6 +29,7 @@ class jboss::params {
   $bindaddr = '127.0.0.1'
   $mode = ''
   $service_autorestart = true
+  $javapth= ''
 
   ### Application related parameters
 
