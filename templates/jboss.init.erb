@@ -68,7 +68,7 @@ JBOSS_CONSOLE=${JBOSS_CONSOLE:-"/dev/null"}
 # Jboss Start command
 JBOSS_CMD_START="cd $JBOSS_HOME/bin; $JBOSSSH"
 
-JBOSS_CMD_STOP=${JBOSS_CMD_STOP:-"java -classpath $JBOSSCP org.jboss.Shutdown --shutdown"}
+JBOSS_CMD_STOP=${JBOSS_CMD_STOP:-"$JAVAPTH/java -classpath $JBOSSCP org.jboss.Shutdown --shutdown"}
 
 if [ -z "`echo $PATH | grep $JAVAPTH`" ]; then
   export PATH=$PATH:$JAVAPTH
